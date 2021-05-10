@@ -5,15 +5,17 @@
     grid-template-columns: repeat(7,auto);
     justify-content: center;
     align-content: center;
-    
+    background-color:blue;
+    box-sizing: border-box;
 }
 
 .block{
-    margin: auto;
     height: 78px;
     width: 78px;
-    background-color: rgb(10, 91, 241);
+    background-color:white;
     border: 1px solid black;
+    border-radius:100% ;
+    margin: 10px;
 }
 
 h1{
@@ -21,9 +23,9 @@ h1{
 }
 
 #cell1{
-    border-radius:15px 0px 0px 0px ;
+   
 }
-
+/* 
 #cell7{
     border-radius:0px 15px 0px 0px ;
 }
@@ -33,5 +35,5 @@ h1{
 }
 
 #cell42{
-    border-radius:0px 0px 15px 0px ;
-}
+    border-radius:0px 0px 15px 0px ; */
+/* } */
