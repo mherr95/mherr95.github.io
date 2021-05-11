@@ -1,6 +1,6 @@
 .game-container{
     position: relative;
-    top: 100px;
+    bottom: 10px;
     display: grid;
     grid-template-columns: repeat(7,auto);
     justify-content: center;
@@ -12,19 +12,27 @@
 .block{
     height: 78px;
     width: 78px;
-    background-color:white;
+    background-color: white;
     border: 1px solid black;
     border-radius:100% ;
     margin: 10px;
+}
+
+.bottom{
+    height: 0px;
+    background-color: blue;
+    border: blue;
 }
 
 h1{
     text-align: center;
 }
 
+
+/* 
 #cell1{
    
-}
+} */
 /* 
 #cell7{
     border-radius:0px 15px 0px 0px ;
