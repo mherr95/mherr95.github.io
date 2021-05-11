@@ -66,19 +66,21 @@ const getColAndRow = (event) => {
     columnAndRow = (`${col}, ${row}`);
     // console.log(columnAndRow);
 
-    for(let i = gameGrid.length - 1; i > 0; i--){
+    for(let i = gameGrid.length - 1; i >= 0; i--){
         let innerColumnArr = ' ';
-        console.log(i)
-        console.log(gameGrid[i]);
-        console.log(typeof col);
         if(gameGrid[i][col] === " "){
            if(player1){
                innerColumnArr = 'player1';
-               changeColor(event);
            }else {
                innerColumnArr = 'player2';
            }
            gameGrid[i][col] = innerColumnArr
+           const apple = col.toString() + i.toString();
+           const bannana = document.getElementById(apple);
+           bannana.style.backgroundColor = playerOne;
+           bannana.classList.add('player1');
+           
+           console.log(bannana);
            console.log(gameGrid);
            return;
         }
@@ -97,6 +99,7 @@ const changeColor = (event) => {
     if((divSelected.style.backgroundColor === playerOne) || (divSelected.style.backgroundColor === playerTwo)){
         return
     }else if(player1){
+
         divSelected.style.backgroundColor = playerOne;
         player1 = false;
     }else if(!player1){
