@@ -61,18 +61,34 @@ const gameGrid = [
 
 //Grab column and row
 const getColAndRow = (event) => {
-    let col = event.currentTarget.classList[1].charAt(6);
-    let row = event.currentTarget.classList[2].charAt(3);
+    let col = parseInt(event.currentTarget.classList[1].charAt(6));
+    let row = parseInt(event.currentTarget.classList[2].charAt(3));
     columnAndRow = (`${col}, ${row}`);
-    console.log(columnAndRow);
+    // console.log(columnAndRow);
 
-    for(let i = 0; i < gameGrid.length; i++){
-        console.log(gameGrid[i][col]);
+    for(let i = gameGrid.length - 1; i > 0; i--){
+        let innerColumnArr = ' ';
+        console.log(i)
+        console.log(gameGrid[i]);
+        console.log(typeof col);
         if(gameGrid[i][col] === " "){
-            changeColor();
+           if(player1){
+               innerColumnArr = 'player1';
+               changeColor(event);
+           }else {
+               innerColumnArr = 'player2';
+           }
+           gameGrid[i][col] = innerColumnArr
+           console.log(gameGrid);
+           return;
         }
+        console.log(innerColumnArr);
     }
 };
+
+
+
+
 
 // Change between player 1 and 2 by color
 const changeColor = (event) => {
