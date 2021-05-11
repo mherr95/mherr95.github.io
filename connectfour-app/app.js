@@ -17,15 +17,25 @@ const currentPlayer = document.querySelector('#currentPlayer')
 const playerOne = 'red'
 const playerTwo = 'yellow'
 let player1 = true;
-const rowsArr = [0,1,2,3,4,5]
-const columns = [0,1,2,3,4,5,6];
 const gameGrid = [
-['','','','','','',''],
-['','','','','','',''],
-['','','','','','',''],
-['','','','','','',''],
-['','','','','','',''],
-['','','','','','',''],
+    [
+        " "," "," "," "," "," "," "
+    ],
+    [
+        " "," "," "," "," "," "," "
+    ],
+    [
+        " "," "," "," "," "," "," "
+    ],
+    [
+        " "," "," "," "," "," "," "
+    ],
+    [
+        " "," "," "," "," "," "," "
+    ],
+    [
+        " "," "," "," "," "," "," "
+    ],
 ]
 
 
@@ -44,33 +54,38 @@ const gameGrid = [
 /////   Event Handlers
 //////////////////////////////////
 
-//Grab column and row and turn them into integers
+// when user clicks certain column we want to check that column for a empty row.
+// check gameGrid by looping through it for empty spaces.
+// first empty spot in column we find we would drop game piece there 
+// Then we update HTML
+
+//Grab column and row
 const getColAndRow = (event) => {
     let col = event.currentTarget.classList[1].charAt(6);
     let row = event.currentTarget.classList[2].charAt(3);
     columnAndRow = (`${col}, ${row}`);
-    // for(let i = 0; i < rowsArr.length; i++) {
-    //     if(rows[i].children(columns) = 'white'){
-    //         rows.push(rows[i].children(columns));
-    //         if(player1 === 1){
-    //             row[0].style.backgroundColor = playerOne;
-    //         }
-
-    //     }
-    // }
-    
     console.log(columnAndRow);
+
+    for(let i = 0; i < gameGrid.length; i++){
+        console.log(gameGrid[i][col]);
+        if(gameGrid[i][col] === " "){
+            changeColor();
+        }
+    }
 };
 
-//Change color between player One and Player Two
+// Change between player 1 and 2 by color
 const changeColor = (event) => {
     const divSelected = event.currentTarget;
+    
     if((divSelected.style.backgroundColor === playerOne) || (divSelected.style.backgroundColor === playerTwo)){
         return
     }else if(player1){
         divSelected.style.backgroundColor = playerOne;
+        player1 = false;
     }else if(!player1){
         divSelected.style.backgroundColor = playerTwo;
+        player1 = true;
     }
 }
 
@@ -80,9 +95,10 @@ const changeColor = (event) => {
 //////////////////////////////////
 /////   Event Listeners
 //////////////////////////////////
+
 cells.forEach((cell) => {
     cell.addEventListener('click', getColAndRow); 
-    // cell.addEventListener('click', changeColor)
+    cell.addEventListener('click', changeColor)
 }); 
 
 
