@@ -40,13 +40,6 @@ const gameGrid = [
 
 
 
-//////////////////////////////////
-/////   Functions
-//////////////////////////////////
-
-
-
-
 
 
 
@@ -54,59 +47,37 @@ const gameGrid = [
 /////   Event Handlers
 //////////////////////////////////
 
-// when user clicks certain column we want to check that column for a empty row.
-// check gameGrid by looping through it for empty spaces.
-// first empty spot in column we find we would drop game piece there 
-// Then we update HTML
-
-//Grab column and row
-const getColAndRow = (event) => {
-    let col = parseInt(event.currentTarget.classList[1].charAt(6));
+const click = (event) => {
+    let column = parseInt(event.currentTarget.classList[1].charAt(6));
     let row = parseInt(event.currentTarget.classList[2].charAt(3));
-    columnAndRow = (`${col}, ${row}`);
-    // console.log(columnAndRow);
+    columnAndRow = (`${column}, ${row}`);
 
-    for(let i = gameGrid.length - 1; i >= 0; i--){
-        let innerColumnArr = ' ';
-        if(gameGrid[i][col] === " "){
+    for(let rows = gameGrid.length - 1; rows >= 0; rows--){
+        let columnArr = " ";
+        if(gameGrid[rows][column] === " "){
            if(player1){
-               innerColumnArr = 'player1';
-           }else {
-               innerColumnArr = 'player2';
+                columnArr = 'player1';
+                const index = column.toString() + rows.toString();
+                const getIndex = document.getElementById(index);
+                getIndex.style.backgroundColor = playerOne;
+                getIndex.classList.add('player1');
+                player1 = false;
+                currentPlayer.innerHTML = 'Yellow'
+           }else if(player1 === false) {
+                columnArr = 'player2';
+                gameGrid[rows][column] = columnArr
+                const index = column.toString() + rows.toString();
+                const getIndex = document.getElementById(index);
+                getIndex.style.backgroundColor = playerTwo;
+                getIndex.classList.add('player2');
+                player1 = true;
+                currentPlayer.innerHTML = 'Red'
            }
-           gameGrid[i][col] = innerColumnArr
-           const apple = col.toString() + i.toString();
-           const bannana = document.getElementById(apple);
-           bannana.style.backgroundColor = playerOne;
-           bannana.classList.add('player1');
-           
-           console.log(bannana);
-           console.log(gameGrid);
+           gameGrid[rows][column] = columnArr
            return;
-        }
-        console.log(innerColumnArr);
-    }
+        };
+    };
 };
-
-
-
-
-
-// Change between player 1 and 2 by color
-const changeColor = (event) => {
-    const divSelected = event.currentTarget;
-    
-    if((divSelected.style.backgroundColor === playerOne) || (divSelected.style.backgroundColor === playerTwo)){
-        return
-    }else if(player1){
-
-        divSelected.style.backgroundColor = playerOne;
-        player1 = false;
-    }else if(!player1){
-        divSelected.style.backgroundColor = playerTwo;
-        player1 = true;
-    }
-}
 
 
 
@@ -116,8 +87,7 @@ const changeColor = (event) => {
 //////////////////////////////////
 
 cells.forEach((cell) => {
-    cell.addEventListener('click', getColAndRow); 
-    cell.addEventListener('click', changeColor)
+    cell.addEventListener('click', click); 
 }); 
 
 
