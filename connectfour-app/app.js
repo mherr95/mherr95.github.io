@@ -14,28 +14,17 @@
 const container = document.querySelector('.game-contaier');
 const cells = document.querySelectorAll('.block');
 const currentPlayer = document.querySelector('#currentPlayer')
+const winner = document.querySelector('.winner');
 const playerOne = 'red'
 const playerTwo = 'yellow'
 let player1 = true;
 const gameGrid = [
-    [
-        " "," "," "," "," "," "," "
-    ],
-    [
-        " "," "," "," "," "," "," "
-    ],
-    [
-        " "," "," "," "," "," "," "
-    ],
-    [
-        " "," "," "," "," "," "," "
-    ],
-    [
-        " "," "," "," "," "," "," "
-    ],
-    [
-        " "," "," "," "," "," "," "
-    ],
+    [" "," "," "," "," "," "," "],
+    [" "," "," "," "," "," "," "],
+    [" "," "," "," "," "," "," "],
+    [" "," "," "," "," "," "," "],
+    [" "," "," "," "," "," "," "],
+    [" "," "," "," "," "," "," "],
 ]
 
 
@@ -53,46 +42,78 @@ const click = (event) => {
     let column = parseInt(event.currentTarget.classList[1].charAt(6));
     let row = parseInt(event.currentTarget.classList[2].charAt(3));
     columnAndRow = (`${column}, ${row}`);
-    console.log(column);
-    console.log(row);
+
+
+    const checkWin = () => {
+        for(let row = 0; row < gameGrid.length; row++){
+            for( let col = 0; col < gameGrid[row].length; col++){
+                position = gameGrid[row][col];
+                // console.log(row , col);
+                if (position === " "){
+                    console.log('empty');
+                }else if (position === 'r'){
+                    if((gameGrid[row][col] === gameGrid[row - 1][col])&&(gameGrid[row][col] === gameGrid[row - 2][col])&&(gameGrid[row][col] === gameGrid[row - 3][col])){
+                        // alert('Red wins');
+                        winner.innerHTML = 'Red WINS!!!'
+                    }else if((gameGrid[row][col] === gameGrid[row][col - 1])&&(gameGrid[row][col] === gameGrid[row][col - 2])&&(gameGrid[row][col] === gameGrid[row][col - 3])){
+                        // alert('Red wins')
+                        winner.innerHTML = 'Red WINS!!!'
+                    
+                    }else if((gameGrid[row][col] === gameGrid[row-1][col-1])&&(gameGrid[row][col] === gameGrid[row-2][col-2])&&(gameGrid[row][col] === gameGrid[row-3][col-3])){
+                        // alert('Red wins');
+                        winner.innerHTML = 'Red WINS!!!'
+                    }else if((gameGrid[row][col] === gameGrid[row-1][col+1])&&(gameGrid[row][col] === gameGrid[row-2][col+2])&&(gameGrid[row][col] === gameGrid[row-3][col+3])){
+                        // alert("Red wins");
+                        winner.innerHTML = 'Red WINS!!!'
+                    }
+                }else{
+                    if((gameGrid[row][col] === gameGrid[row - 1][col])&&(gameGrid[row][col] === gameGrid[row - 2][col])&&(gameGrid[row][col] === gameGrid[row - 3][col])){
+                        // alert('Yellow wins');
+                        winner.innerHTML = 'Yellow WINS!!!'
+                    }else if((gameGrid[row][col] === gameGrid[row][col - 1])&&(gameGrid[row][col] === gameGrid[row][col - 2])&&(gameGrid[row][col] === gameGrid[row][col - 3])){
+                        // alert('Yellow wins')
+                        winner.innerHTML = 'Yellow WINS!!!'
+                    }else if((gameGrid[row][col] === gameGrid[row-1][col-1])&&(gameGrid[row][col] === gameGrid[row-2][col-2])&&(gameGrid[row][col] === gameGrid[row-3][col-3])){
+                        // alert('Yellow wins');
+                        winner.innerHTML = 'Yellow WINS!!!'
+                    }else if((gameGrid[row][col] === gameGrid[row-1][col+1])&&(gameGrid[row][col] === gameGrid[row-2][col+2])&&(gameGrid[row][col] === gameGrid[row-3][col+3])){
+                        // alert('Yellow wins');
+                        winner.innerHTML = 'Yellow WINS!!!'
+                    }
+                }
+            }
+        }
+    }
+    
+
     for(let rows = gameGrid.length - 1; rows >= 0; rows--){
         let columnArr = " ";
         if(gameGrid[rows][column] === " "){
            if(player1){
-                columnArr = 'player1';
-                const index = column.toString() + rows.toString();
-                const getIndex = document.getElementById(index);
-                getIndex.style.backgroundColor = playerOne;
-                getIndex.classList.add('player1');
+                color = 'r';
+                const Id = column.toString() + rows.toString();
+                const getId = document.getElementById(Id);
+                getId.style.backgroundColor = playerOne;
+                getId.classList.add('player1');
                 player1 = false;
                 currentPlayer.innerHTML = 'Yellow'
            }else if(player1 === false) {
-                columnArr = 'player2';
+                color = 'y';
                 gameGrid[rows][column] = columnArr
-                const index = column.toString() + rows.toString();
-                const getIndex = document.getElementById(index);
-                getIndex.style.backgroundColor = playerTwo;
-                getIndex.classList.add('player2');
+                const Id = column.toString() + rows.toString();
+                const getId = document.getElementById(Id);
+                getId.style.backgroundColor = playerTwo;
+                getId.classList.add('player2');
                 player1 = true;
                 currentPlayer.innerHTML = 'Red'
            }
-           gameGrid[rows][column] = columnArr
+           gameGrid[rows][column] = color;
+           checkWin();
            return;
         };
+
     }; 
 
-
-    const colorCheck = (one, two, three, four) => {
-        return ((one != 0) && (one === two) && (one === three) && (one === four));
-    }
-    const horizontalCheck = () => {
-        for(let row = 0; row < gameGrid.length; row ++){
-            for(let col = 0; col < 4; col ++){
-                colorCheck(gameGrid[col][row].style.backgroundColor,gameGrid[col+1][row].style.backgroundColor,gameGrid[col+2][row].style.backgroundColor,gameGrid[col+3][row].style.backgroundColor)
-                return true;
-            }
-        }
-    }
 };
 
 
@@ -105,73 +126,3 @@ const click = (event) => {
 cells.forEach((cell) => {
     cell.addEventListener('click', click); 
 }); 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const playerOne = [];
-// const playerTwo = [];
-// const selectPosition = (e)  => {
-//     let player = 1;
-
-//     if (e.currentTarget.style.backgroundColor === 'red' || e.currentTarget.style.backgroundColor === 'yellow'){
-//         return;
-//     }else if(playerOne.length === playerTwo.length){
-//         e.currentTarget.style.backgroundColor = 'red';
-//         e.currentTarget.classList.add('full');
-//         playerOne.push(e);
-//         player = 2;
-//         currentPlayer.innerText = player;
-//     }else if (playerOne.length > playerTwo.length){
-//         e.currentTarget.style.backgroundColor ='yellow';
-//         playerTwo.push(e);
-//         player = 1;
-//         currentPlayer.innerText = player;
-//     }
-    
-// }; 
-
-
-
-
-
-
-
-// const columnOne = document.querySelectorAll('.column1')
-//     const checkColumnOne = (e) => {
-//         color = e.currentTarget.style.backgroundColor
-//         console.log(color);
-//     }
-    // document.querySelectorAll('.column1').forEach((column) => {
-    //     column.addEventListener('click', checkColumnOne)
-    // });
