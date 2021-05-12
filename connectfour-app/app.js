@@ -43,6 +43,8 @@ const gameGrid = [
 
 
 
+
+
 //////////////////////////////////
 /////   Event Handlers
 //////////////////////////////////
@@ -51,7 +53,8 @@ const click = (event) => {
     let column = parseInt(event.currentTarget.classList[1].charAt(6));
     let row = parseInt(event.currentTarget.classList[2].charAt(3));
     columnAndRow = (`${column}, ${row}`);
-
+    console.log(column);
+    console.log(row);
     for(let rows = gameGrid.length - 1; rows >= 0; rows--){
         let columnArr = " ";
         if(gameGrid[rows][column] === " "){
@@ -76,7 +79,20 @@ const click = (event) => {
            gameGrid[rows][column] = columnArr
            return;
         };
-    };
+    }; 
+
+
+    const colorCheck = (one, two, three, four) => {
+        return ((one != 0) && (one === two) && (one === three) && (one === four));
+    }
+    const horizontalCheck = () => {
+        for(let row = 0; row < gameGrid.length; row ++){
+            for(let col = 0; col < 4; col ++){
+                colorCheck(gameGrid[col][row].style.backgroundColor,gameGrid[col+1][row].style.backgroundColor,gameGrid[col+2][row].style.backgroundColor,gameGrid[col+3][row].style.backgroundColor)
+                return true;
+            }
+        }
+    }
 };
 
 
