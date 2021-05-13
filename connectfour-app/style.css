@@ -1,5 +1,5 @@
 .game-container{
-    position: relative;
+    position: static;
     bottom: 10px;
     display: grid;
     grid-template-columns: repeat(7,auto);
