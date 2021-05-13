@@ -20,6 +20,7 @@ https://stackoverflow.com/questions/15457796/four-in-a-row-logic/15457826#154578
 Also go help from Phil and the TA's
 */
 const startbtn = document.querySelector('.btn');
+const resetbtn = document.querySelector('.reset-btn')
 const cells = document.querySelectorAll('.block');
 const currentPlayer = document.querySelector('#currentPlayer')
 const winner = document.querySelector('.winner');
@@ -43,11 +44,17 @@ const start = () => {
     cells.forEach((cell) => {
         cell.addEventListener('click', click); 
     }); 
-    console.log('started')
-}
+};
 
-startbtn.addEventListener('click', start)
 
+// // When the reset button is click, board clears
+// const reset = () => {
+//     gameGrid[] = 
+// }
+
+
+startbtn.addEventListener('click', start);
+// resetbtn.addEventListener('click', reset);
 
 
 
@@ -103,6 +110,7 @@ const click = (event) => {
                     }
                     //Diagonall Top to Bottom
                     //Here is the same as the above the numbers are set so that we don't run off gameGrid
+                    //Same logic for 'y'
                     for(row = 0; row < 3; row++){
                         for(column = 0; column < 4; column ++){
                             if((position === gameGrid[row][column]) && (position === gameGrid[row+1][column+1]) && (position === gameGrid[row+2][column+2]) && (position === gameGrid[row+3][column+3])){
@@ -159,8 +167,6 @@ const click = (event) => {
     }
 
 
-
-
     const gameTie = () => {
         let tie = false;
         for(let col = 0; col < gameGrid[0].length ; col++){
@@ -172,6 +178,7 @@ const click = (event) => {
         }
         if(tie === true){
             winner.innerHTML = 'Tie Game';
+            return win = true;
         }
     }
 
@@ -201,10 +208,8 @@ const click = (event) => {
                     currentPlayer.innerHTML = 'Red'
             }
             gameGrid[rows][column] = color;
-            // tieGame();
             gameTie();
             checkWin();
-            // checkTie();
             return;
             };
 
@@ -212,43 +217,3 @@ const click = (event) => {
     };
     changeColor();
 };
-
-
-
-
-
-
-
-
-
-
-
-
-const tieGame = () => {
-    console.log(gameGrid[0][column]);
-    if(gameGrid[0][column] != "w" && gameGrid[0][column != " "]){
-        win = false;
-        winner.innerHTML = 'Tie Game'
-    };
-};
-
-
-
-const checkTie = () => {
-    for(let row = 0; row < gameGrid.length; row++){
-        for(col = 0; col < gameGrid[row].length; col++){
-            console.log(row);
-            console.log(col);
-            console.log(gameGrid[row][col]);
-            if((gameGrid[row][col] === 'w') || (gameGrid[row][col] == " ")){
-                // console.log(gameGrid);
-                return;
-            }else if (gameGrid[row][col] === 'y' || gameGrid[row][col] === 'r'){
-
-                continue;
-            }else{
-                winner.innerHTML = 'Tie Game';
-            }
-        }
-    }
-}
