@@ -1,3 +1,7 @@
+body{
+    background-color: rgb(25, 25, 26) ;
+}
+
 .game-container{
     display: grid;
     grid-template-columns: repeat(7,auto);
@@ -6,14 +10,14 @@
     background-color:rgb(54, 54, 243);
     padding-top: 20px;
     padding-bottom: 50px;
-    width: 90%;
+    width: 60%;
     margin: auto;
     box-shadow: 10px 10px;
 }
 
 .block{
-    height: 78px;
-    width: 78px;
+    height: 60px;
+    width: 60px;
     background-color: rgb(20,49,140);
     border: 1px solid black;
     border-radius:100% ;
@@ -29,6 +33,7 @@
 
 h1{
     text-align: center;
+    color: white;
 }
 
 .winner{
@@ -41,23 +46,12 @@ h1{
     padding: 10px;
 }
 
-.currentplayer{
+.current-player{
     text-align: center;
+    color: white
 }
 
-/* 
-#cell1{
-   
-} */
-/* 
-#cell7{
-    border-radius:0px 15px 0px 0px ;
+.winner{
+    color: white;
+    box-shadow: white;
 }
-
-#cell36{
-    border-radius:0px 0px 0px 15px ;
-}
-
-#cell42{
-    border-radius:0px 0px 15px 0px ; */
-/* } */
