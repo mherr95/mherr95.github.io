@@ -161,63 +161,23 @@ const click = (event) => {
 
 
 
-    const tieGame = () => {
-        console.log(gameGrid[0][column]);
-        if(gameGrid[0][column] != "w" && gameGrid[0][column != " "]){
-            win = false;
-            winner.innerHTML = 'Tie Game'
-        };
-    };
-
-
-
-
     const gameTie = () => {
+        let tie = false;
         for(let col = 0; col < gameGrid[0].length ; col++){
-            console.log(gameGrid[0][col]);
-            if(gameGrid[0][col] !== 'w' && gameGrid[0][col] !== " "){
-                winner.innerHTML = 'Tie Game';
+            if(gameGrid[0][col] === " "){
+                return tie = false;
+            }else{
+                tie = true;
             }
-            
+        }
+        if(tie === true){
+            winner.innerHTML = 'Tie Game';
         }
     }
 
 
 
 
-
-
-
-
-
-
-
-
-
-    const checkTie = () => {
-        for(let row = 0; row < gameGrid.length; row++){
-            for(col = 0; col < gameGrid[row].length; col++){
-                console.log(row);
-                console.log(col);
-                console.log(gameGrid[row][col]);
-                if((gameGrid[row][col] === 'w') || (gameGrid[row][col] == " ")){
-                    // console.log(gameGrid);
-                    return;
-                }else if (gameGrid[row][col] === 'y' || gameGrid[row][col] === 'r'){
-    
-                    continue;
-                }else{
-                    winner.innerHTML = 'Tie Game';
-                }
-            }
-        }
-    }
-
-    
-
-
-
-    
     const changeColor = () => {
         for(let rows = gameGrid.length - 1; rows >= 0; rows--){
             let columnArr = " ";
@@ -262,3 +222,33 @@ const click = (event) => {
 
 
 
+
+
+const tieGame = () => {
+    console.log(gameGrid[0][column]);
+    if(gameGrid[0][column] != "w" && gameGrid[0][column != " "]){
+        win = false;
+        winner.innerHTML = 'Tie Game'
+    };
+};
+
+
+
+const checkTie = () => {
+    for(let row = 0; row < gameGrid.length; row++){
+        for(col = 0; col < gameGrid[row].length; col++){
+            console.log(row);
+            console.log(col);
+            console.log(gameGrid[row][col]);
+            if((gameGrid[row][col] === 'w') || (gameGrid[row][col] == " ")){
+                // console.log(gameGrid);
+                return;
+            }else if (gameGrid[row][col] === 'y' || gameGrid[row][col] === 'r'){
+
+                continue;
+            }else{
+                winner.innerHTML = 'Tie Game';
+            }
+        }
+    }
+}
