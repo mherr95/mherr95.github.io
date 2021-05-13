@@ -3,15 +3,23 @@
 //Yellow will then go next and select the any position that red has not already picked.
 //Each color will continue to take turns selecting an open position. 
 //Once one color has consecutively connected four positions either horizontially, vertically, or diagonally, that color wins.
-//when user clicks the div get the column and row class
-//when a user clicks on the column chip goes to the bottom
-//loop throught the column and row to see if there is any value
-//if there is a value keep going
-//if there is no value then put game piece there. 
-//Find out if that piece wins the game
 
 
-const container = document.querySelector('.game-contaier');
+/* References
+// These videos gave me ideas on how to start and build my connect four game //
+https://www.youtube.com/watch?v=Hi5hEH1KNEc&t=3694s
+https://www.youtube.com/watch?v=aroYjgQH8Tw&t=1520s
+https://www.youtube.com/watch?v=Z_IaJQojun8
+
+
+// These stackover flow pages help me figure out my checkWin fucntion //
+https://stackoverflow.com/questions/33181356/connect-four-game-checking-for-wins-js
+https://stackoverflow.com/questions/15457796/four-in-a-row-logic/15457826#15457826
+
+
+Also go help from Phil and the TA's
+*/
+const startbtn = document.querySelector('.btn');
 const cells = document.querySelectorAll('.block');
 const currentPlayer = document.querySelector('#currentPlayer')
 const winner = document.querySelector('.winner');
@@ -30,13 +38,16 @@ const gameGrid = [
 
 
 
+const start = () => {
+    cells.forEach((cell) => {
+        cell.addEventListener('click', click); 
+    }); 
+}
+
+startbtn.addEventListener('click', start)
 
 
 
-
-//////////////////////////////////
-/////   Event Handlers
-//////////////////////////////////
 
 const click = (event) => {
     let column = parseInt(event.currentTarget.classList[1].charAt(6));
@@ -44,47 +55,102 @@ const click = (event) => {
     columnAndRow = (`${column}, ${row}`);
 
 
+    
+
+
     const checkWin = () => {
         for(let row = 0; row < gameGrid.length; row++){
             for( let col = 0; col < gameGrid[row].length; col++){
                 position = gameGrid[row][col];
-                // console.log(position);
                 if (position === " "){
-                    console.log('');
+                    break;
                 }else if (position === 'r'){
+                        //Vertical
+                        for(r = 0; r < 3; r++){
+                            for(c = 0; c < 7; c ++){
+                                if((position === gameGrid[r][column]) && (position === gameGrid[r + 1][column]) && (position === gameGrid[r + 2][column]) && (position === gameGrid[r + 3][column])){
+                                    winner.innerHTML = 'Red WINS!!!'
+                            }
+                        }    
+                    }
+                        //Horizontal
+                        for(r = 0; r < 6; r++){
+                            for(c = 0; c < 4; c ++){
+                                if((position === gameGrid[row][c]) && (position === gameGrid[row][c+1]) && (position === gameGrid[row][c+2]) && (position === gameGrid[row][c+3])){
+                                    winner.innerHTML = 'Red WINS!!!'
+                            }
+                        }     
+                    }
+                        //Diagonall Top to Bottom
+                        for(r = 0; r < 3; r++){
+                            for(c = 0; c < 4; c ++){
+                                if((position === gameGrid[r][c]) && (position === gameGrid[r+1][c+1]) && (position === gameGrid[r+2][c+2]) && (position === gameGrid[r+3][c+3])){
+                                    winner.innerHTML = 'Red WINS!!!'
+                            }
+                        }     
+                    }
+                        //Diagonall Bottom to Top
+                        for(r = 3; r < 6; r++){
+                            for(c = 0; c < 4; c ++){
+                                if((position === gameGrid[r][c]) && (position === gameGrid[r-1][c+1]) && (position === gameGrid[r-2][c+2]) && (position === gameGrid[r-3][c+3])){
+                                    winner.innerHTML = 'Red WINS!!!'
+                            }
+                        }     
+                    }
+                    
+                }else if (position === 'y'){
                     //Vertical
-                    for(r = 0; r < 3; r++){
-                        for(c = 0; c < 7; c ++)
-                            if((position === gameGrid[r + 1][column]) && (position === gameGrid[r + 2][column]) && (position === gameGrid[r + 3][column])){
-                                winner.innerHTML = 'Red WINS!!!'
-                        }
+                        for(r = 0; r < 3; r++){
+                            for(c = 0; c < 7; c ++){
+                                if((position === gameGrid[r][column]) && (position === gameGrid[r + 1][column]) && (position === gameGrid[r + 2][column]) && (position === gameGrid[r + 3][column])){
+                                    winner.innerHTML = 'Yellow WINS!!!'
+                            }
+                        }    
+                    }
                     //Horizontal
-                    // }else if((position === gameGrid[row][col - 1])&&(position === gameGrid[row][col - 2])&&(position === gameGrid[row][col - 3])){
-                    //     winner.innerHTML = 'Red WINS!!!'
-                    // //left to up right
-                    // }else if((position === gameGrid[row-1][col-1])&&(position === gameGrid[row-2][col-2])&&(position === gameGrid[row-3][col-3])){
-                    //     winner.innerHTML = 'Red WINS!!!'
-                    // //left to down right
-                    // }else if((position === gameGrid[row-1][col+1])&&(position === gameGrid[row-2][col+2])&&(position === gameGrid[row-3][col+3])){
-                    //     winner.innerHTML = 'Red WINS!!!'
+                        for(r = 0; r < 6; r++){
+                            for(c = 0; c < 4; c ++){
+                                if((position === gameGrid[row][c]) && (position === gameGrid[row][c+1]) && (position === gameGrid[row][c+2]) && (position === gameGrid[row][c+3])){
+                                    winner.innerHTML = 'Yellow WINS!!!'
+                            }
+                        }     
                     }
-                }else{
-                    if((position === gameGrid[row - 1][col])&&(position === gameGrid[row - 2][col])&&(position === gameGrid[row - 3][col])){
-                        winner.innerHTML = 'Yellow WINS!!!'
-
-                    }else if((position === gameGrid[row][col - 1])&&(position === gameGrid[row][col - 2])&&(position === gameGrid[row][col - 3])){
-                        winner.innerHTML = 'Yellow WINS!!!'
-
-                    }else if((position === gameGrid[row-1][col-1])&&(position === gameGrid[row-2][col-2])&&(position === gameGrid[row-3][col-3])){;
-                        winner.innerHTML = 'Yellow WINS!!!'
-
-                    }else if((position === gameGrid[row-1][col+1])&&(position === gameGrid[row-2][col+2])&&(position === gameGrid[row-3][col+3])){;
-                        winner.innerHTML = 'Yellow WINS!!!'
+                    //Diagonall Top to Bottom
+                        for(r = 0; r < 3; r++){
+                            for(c = 0; c < 4; c ++){
+                                if((position === gameGrid[r][c]) && (position === gameGrid[r+1][c+1]) && (position === gameGrid[r+2][c+2]) && (position === gameGrid[r+3][c+3])){
+                                    winner.innerHTML = 'Yellow WINS!!!'
+                            }
+                        }     
                     }
+                    //Diagonall Bottom to Top
+                        for(r = 3; r < 6; r++){
+                            for(c = 0; c < 4; c ++){
+                                if((position === gameGrid[r][c]) && (position === gameGrid[r-1][c+1]) && (position === gameGrid[r-2][c+2]) && (position === gameGrid[r-3][c+3])){
+                                    winner.innerHTML = 'Yellow WINS!!!'
+                            }
+                        }     
+                    }
+                }else if((position === 'r') || (position === 'y')){
+                    winner.innerHTML = 'It\'s a tie game'; 
                 }
             }
         }
     }
+
+
+
+    // const checkTie = () => {
+    //     for(let rows = gameGrid.length - 1; rows >= 0; rows--){
+    //         const Id = column.toString() + rows.toString();
+    //         const getId = document.getElementById(Id);
+    //         if(getId != 'player1'  && getId != 'player2'){
+    //             console.log('Tie game');
+    //         }
+    //         // console.log(col);
+    //     }
+    // }
+    
     
     const changeColor = () => {
         for(let rows = gameGrid.length - 1; rows >= 0; rows--){
@@ -116,15 +182,16 @@ const click = (event) => {
         }; 
     };
     changeColor();
+    // checkTie();
 };
 
 
 
 
-//////////////////////////////////
-/////   Event Listeners
-//////////////////////////////////
 
-cells.forEach((cell) => {
-    cell.addEventListener('click', click); 
-}); 
+
+
+
+
+
+
