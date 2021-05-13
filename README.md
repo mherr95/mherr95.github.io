@@ -14,7 +14,14 @@ Link to Game: https://mherr95.github.io/connectfour-app/
 
 # Features
 
-* Score Board
-* Reset Button
 * New Game Button
+* Keep's Track of Player
+* Alert when game has been won/tie
 
+# WireFrame
+ConnectFour![image](https://user-images.githubusercontent.com/80867355/118200095-674e3b00-b422-11eb-814d-586330f07664.png)
+
+# Future Improvements
+* Reset Button
+* Scoreboard
+* User vs AI
