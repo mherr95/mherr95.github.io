@@ -10,10 +10,10 @@ body{
     background-color:rgb(54, 54, 243);
     padding-top: 20px;
     padding-bottom: 50px;
-    width: 60%;
+    width: 45%;
     margin: auto;
     box-shadow: 10px 10px;
-    border-radius: 2%;
+    /* border-radius: 2%; */
 }
 
 .block{
