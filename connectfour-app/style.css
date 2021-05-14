@@ -36,6 +36,7 @@ h1{
     margin: 0 auto;
     display: block;
     padding: 10px;
+    box-shadow: 3px 3px;
 }
 .btn:active {
     background:white;
@@ -46,7 +47,7 @@ h1{
 .current-player{
     display: none;
     text-align: center;
-    color: white
+    color: white;
 }
 
 .winner{
@@ -59,4 +60,5 @@ h1{
 .reset-btn{
     margin: 0 auto;
     display: block;
+    box-shadow: 3px 3px;
 }
