@@ -25,18 +25,19 @@ const startbtn = document.querySelector('.btn');
 const resetbtn = document.querySelector('.reset-btn')
 const cells = document.querySelectorAll('.block');
 const currentPlayer = document.querySelector('#currentPlayer')
+const showPlayer = document.querySelector('.current-player');
 const winner = document.querySelector('.winner');
 const playerOne = 'red'
 const playerTwo = 'yellow'
 let player1 = true;
-const gameGrid = [
+let gameGrid = [
     [" "," "," "," "," "," "," "],
     [" "," "," "," "," "," "," "],
     [" "," "," "," "," "," "," "],
     [" "," "," "," "," "," "," "],
     [" "," "," "," "," "," "," "],
     [" "," "," "," "," "," "," "],
-]
+];
 
 
 
@@ -45,9 +46,25 @@ const start = () => {
     cells.forEach((cell) => {
         cell.addEventListener('click', click); 
     }); 
+    showPlayer.style.display = 'block';
 };
 
-startbtn.addEventListener('click', start);
+// const reset = () => {
+//     cells.forEach((cell) => {
+//         cell.style.backgroundColor = 'rgb(20,49,140)';
+//     })
+//     gameGrid = [
+//         [" "," "," "," "," "," "," "],
+//         [" "," "," "," "," "," "," "],
+//         [" "," "," "," "," "," "," "],
+//         [" "," "," "," "," "," "," "],
+//         [" "," "," "," "," "," "," "],
+//         [" "," "," "," "," "," "," "],
+//     ];
+//     start();
+// };
+
+
 
 
 
@@ -75,6 +92,8 @@ const click = (event) => {
                             if((position === gameGrid[row][column]) && (position === gameGrid[row][column+1]) && (position === gameGrid[row][column+2]) && (position === gameGrid[row][column+3])){
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Red WINS!!!';
+                                showPlayer.style.display = 'none';
+                                return;
                             }
                         }     
                     }
@@ -85,6 +104,7 @@ const click = (event) => {
                             if((position === gameGrid[row][column]) && (position === gameGrid[row + 1][column]) && (position === gameGrid[row + 2][column]) && (position === gameGrid[row + 3][column])){
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Red WINS!!!';
+                                showPlayer.style.display = 'none';
                             }
                         }    
                     }
@@ -95,6 +115,7 @@ const click = (event) => {
                             if((position === gameGrid[row][column]) && (position === gameGrid[row-1][column+1]) && (position === gameGrid[row-2][column+2]) && (position === gameGrid[row-3][column+3])){
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Red WINS!!!';
+                                showPlayer.style.display = 'none';
                             }
                         }     
                     }
@@ -106,6 +127,7 @@ const click = (event) => {
                             if((position === gameGrid[row][column]) && (position === gameGrid[row+1][column+1]) && (position === gameGrid[row+2][column+2]) && (position === gameGrid[row+3][column+3])){
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Red WINS!!!';
+                                showPlayer.style.display = 'none';
                             }
                         }     
                     }
@@ -116,6 +138,7 @@ const click = (event) => {
                             if((position === gameGrid[row][column]) && (position === gameGrid[row][column+1]) && (position === gameGrid[row][column+2]) && (position === gameGrid[row][column+3])){
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Yellow WINS!!!';
+                                showPlayer.style.display = 'none';
                             }
                         }     
                     }
@@ -125,6 +148,7 @@ const click = (event) => {
                             if((position === gameGrid[row][column]) && (position === gameGrid[row + 1][column]) && (position === gameGrid[row + 2][column]) && (position === gameGrid[row + 3][column])){
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Yellow WINS!!!';
+                                showPlayer.style.display = 'none';
                             }
                         }    
                     }
@@ -134,6 +158,7 @@ const click = (event) => {
                             if((position === gameGrid[row][column]) && (position === gameGrid[row-1][column+1]) && (position === gameGrid[row-2][column+2]) && (position === gameGrid[row-3][column+3])){
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Yellow WINS!!!';
+                                showPlayer.style.display = 'none';
                             }
                         }  
                     }
@@ -143,6 +168,7 @@ const click = (event) => {
                             if((position === gameGrid[row][column]) && (position === gameGrid[row+1][column+1]) && (position === gameGrid[row+2][column+2]) && (position === gameGrid[row+3][column+3])){
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Yellow WINS!!!';
+                                showPlayer.style.display = 'none';
                              }
                         }     
                     }
@@ -201,3 +227,7 @@ const click = (event) => {
     };
     changeColor();
 };
+
+
+startbtn.addEventListener('click', start);
+// resetbtn.addEventListener('click', reset);

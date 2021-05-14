@@ -38,6 +38,7 @@ h1{
 }
 
 .current-player{
+    display: none;
     text-align: center;
     color: white
 }
