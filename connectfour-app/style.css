@@ -16,28 +16,19 @@ body{
 }
 
 .block{
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     background-color: rgb(20,49,140);
     border: 1px solid black;
     border-radius:100% ;
     margin: 10px;
+    padding: 5px;
     box-sizing: 5px 1px;
-}
-
-.bottom{
-    height: 0px;
-    background-color: blue;
-    border: blue;
 }
 
 h1{
     text-align: center;
     color: white;
-}
-
-.winner{
-    text-align: center;
 }
 
 .btn{
@@ -52,25 +43,12 @@ h1{
 }
 
 .winner{
+    text-align: center;
     color: white;
-    box-shadow: white;
+    box-shadow: black;
 }
 
 .btn:active {
     background:white;
     box-shadow: inset 10px 10px 5px #c1c1c1;
   }
-
-#modal{
-    display: none;
-}
-#modalTextbox{
-    color: white;
-    background-color: rgb(94, 94, 97);
-    height: 300px;
-    width: 600px;
-    border-radius: 5px;
-    margin: auto;
-    opacity: 90%;
-    box-shadow: 0 10px 10px black;
-}
