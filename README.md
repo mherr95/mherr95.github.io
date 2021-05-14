@@ -14,8 +14,8 @@ Link to Game: https://mherr95.github.io/connectfour-app/
 
 # Features
 
-* New Game Button
-* Keep's Track of Player
+* Start Game Button
+* Keep's Track of Player Turn
 * Alert when game has been won/tie
 
 # WireFrame
