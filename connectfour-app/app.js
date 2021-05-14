@@ -6,18 +6,20 @@
 
 
 /* References
-// These videos gave me ideas on how to start and build my connect four game //
+// These videos and websites gave me ideas on how to start and build my connect four game //
 https://www.youtube.com/watch?v=Hi5hEH1KNEc&t=3694s
 https://www.youtube.com/watch?v=aroYjgQH8Tw&t=1520s
 https://www.youtube.com/watch?v=Z_IaJQojun8
+https://dev.to/fakorededamilola/building-a-connect-four-game-with-javascript-1f45
 
 
-// These stackover flow pages help me figure out my checkWin fucntion //
+// These websites help me figure out my checkWin fucntion //
 https://stackoverflow.com/questions/33181356/connect-four-game-checking-for-wins-js
 https://stackoverflow.com/questions/15457796/four-in-a-row-logic/15457826#15457826
 
+// Also go help from Phil and the TA's //
 
-Also go help from Phil and the TA's
+
 */
 const startbtn = document.querySelector('.btn');
 const resetbtn = document.querySelector('.reset-btn')
@@ -27,7 +29,6 @@ const winner = document.querySelector('.winner');
 const playerOne = 'red'
 const playerTwo = 'yellow'
 let player1 = true;
-let Win = false;
 const gameGrid = [
     [" "," "," "," "," "," "," "],
     [" "," "," "," "," "," "," "],
@@ -46,15 +47,10 @@ const start = () => {
     }); 
 };
 
-
-// // When the reset button is click, board clears
-// const reset = () => {
-//     gameGrid[] = 
-// }
-
-
 startbtn.addEventListener('click', start);
-// resetbtn.addEventListener('click', reset);
+
+
+
 
 
 
@@ -63,8 +59,6 @@ const click = (event) => {
     let row = parseInt(event.currentTarget.classList[2].charAt(3));
     columnAndRow = (`${column}, ${row}`);
 
-
-    
 
 
     const checkWin = () => {
@@ -80,8 +74,6 @@ const click = (event) => {
                         for(column = 0; column < 4; column ++){
                             if((position === gameGrid[row][column]) && (position === gameGrid[row][column+1]) && (position === gameGrid[row][column+2]) && (position === gameGrid[row][column+3])){
                                 gameGrid[rows][column] = 'w';
-                                win = true;
-                                console.log(gameGrid);
                                 winner.innerHTML = 'Red WINS!!!';
                             }
                         }     
@@ -92,7 +84,6 @@ const click = (event) => {
                         for(column = 0; column < 7 ; column ++){
                             if((position === gameGrid[row][column]) && (position === gameGrid[row + 1][column]) && (position === gameGrid[row + 2][column]) && (position === gameGrid[row + 3][column])){
                                 gameGrid[rows][column] = 'w';
-                                console.log(gameGrid);
                                 winner.innerHTML = 'Red WINS!!!';
                             }
                         }    
@@ -103,7 +94,6 @@ const click = (event) => {
                         for(column = 0; column < 4; column ++){
                             if((position === gameGrid[row][column]) && (position === gameGrid[row-1][column+1]) && (position === gameGrid[row-2][column+2]) && (position === gameGrid[row-3][column+3])){
                                 gameGrid[rows][column] = 'w';
-                                console.log(gameGrid);
                                 winner.innerHTML = 'Red WINS!!!';
                             }
                         }     
@@ -115,7 +105,6 @@ const click = (event) => {
                         for(column = 0; column < 4; column ++){
                             if((position === gameGrid[row][column]) && (position === gameGrid[row+1][column+1]) && (position === gameGrid[row+2][column+2]) && (position === gameGrid[row+3][column+3])){
                                 gameGrid[rows][column] = 'w';
-                                console.log(gameGrid);
                                 winner.innerHTML = 'Red WINS!!!';
                             }
                         }     
@@ -126,7 +115,6 @@ const click = (event) => {
                         for(column = 0; column < 4; column ++){
                             if((position === gameGrid[row][column]) && (position === gameGrid[row][column+1]) && (position === gameGrid[row][column+2]) && (position === gameGrid[row][column+3])){
                                 gameGrid[rows][column] = 'w';
-                                console.log(gameGrid);
                                 winner.innerHTML = 'Yellow WINS!!!';
                             }
                         }     
@@ -136,7 +124,6 @@ const click = (event) => {
                         for(column = 0; column < 7; column ++){
                             if((position === gameGrid[row][column]) && (position === gameGrid[row + 1][column]) && (position === gameGrid[row + 2][column]) && (position === gameGrid[row + 3][column])){
                                 gameGrid[rows][column] = 'w';
-                                console.log(gameGrid);
                                 winner.innerHTML = 'Yellow WINS!!!';
                             }
                         }    
@@ -146,7 +133,6 @@ const click = (event) => {
                         for(column = 0; column < 4; column ++){
                             if((position === gameGrid[row][column]) && (position === gameGrid[row-1][column+1]) && (position === gameGrid[row-2][column+2]) && (position === gameGrid[row-3][column+3])){
                                 gameGrid[rows][column] = 'w';
-                                console.log(gameGrid);
                                 winner.innerHTML = 'Yellow WINS!!!';
                             }
                         }  
@@ -156,7 +142,6 @@ const click = (event) => {
                         for(column = 0; column < 4; column ++){
                             if((position === gameGrid[row][column]) && (position === gameGrid[row+1][column+1]) && (position === gameGrid[row+2][column+2]) && (position === gameGrid[row+3][column+3])){
                                 gameGrid[rows][column] = 'w';
-                                console.log(gameGrid);
                                 winner.innerHTML = 'Yellow WINS!!!';
                              }
                         }     
@@ -178,7 +163,6 @@ const click = (event) => {
         }
         if(tie === true){
             winner.innerHTML = 'Tie Game';
-            return win = true;
         }
     }
 
