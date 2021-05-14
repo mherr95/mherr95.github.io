@@ -49,23 +49,22 @@ const start = () => {
     showPlayer.style.display = 'block';
 };
 
-// const reset = () => {
-//     cells.forEach((cell) => {
-//         cell.style.backgroundColor = 'rgb(20,49,140)';
-//     })
-//     gameGrid = [
-//         [" "," "," "," "," "," "," "],
-//         [" "," "," "," "," "," "," "],
-//         [" "," "," "," "," "," "," "],
-//         [" "," "," "," "," "," "," "],
-//         [" "," "," "," "," "," "," "],
-//         [" "," "," "," "," "," "," "],
-//     ];
-//     start();
-// };
-
-
-
+const reset = () => {
+    cells.forEach((cell) => {
+        cell.style.backgroundColor = 'rgb(20,49,140)';
+    })
+    gameGrid = [
+        [" "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "],
+    ];
+    player1 = true;
+    currentPlayer.innerHTML = 'Red';
+    winner.innerHTML = ''
+};
 
 
 
@@ -230,4 +229,4 @@ const click = (event) => {
 
 
 startbtn.addEventListener('click', start);
-// resetbtn.addEventListener('click', reset);
+resetbtn.addEventListener('click', reset);

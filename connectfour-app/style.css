@@ -36,6 +36,11 @@ h1{
     display: block;
     padding: 10px;
 }
+.btn:active {
+    background:white;
+    box-shadow: inset 10px 10px 5px #c1c1c1;
+  }
+
 
 .current-player{
     display: none;
@@ -49,7 +54,8 @@ h1{
     box-shadow: black;
 }
 
-.btn:active {
-    background:white;
-    box-shadow: inset 10px 10px 5px #c1c1c1;
-  }
+
+.reset-btn{
+    margin: 0 auto;
+    display: block;
+}
