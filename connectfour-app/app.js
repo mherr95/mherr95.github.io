@@ -30,6 +30,7 @@ const winner = document.querySelector('.winner');
 const playerOne = 'red'
 const playerTwo = 'yellow'
 let player1 = true;
+let liveGame = true;
 let gameGrid = [
     [" "," "," "," "," "," "," "],
     [" "," "," "," "," "," "," "],
@@ -63,7 +64,9 @@ const reset = () => {
     ];
     player1 = true;
     currentPlayer.innerHTML = 'Red';
+    showPlayer.style.display = 'block';
     winner.innerHTML = ''
+    liveGame = true;
 };
 
 
@@ -92,7 +95,7 @@ const click = (event) => {
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Red WINS!!!';
                                 showPlayer.style.display = 'none';
-                                return;
+                                liveGame = false;
                             }
                         }     
                     }
@@ -104,6 +107,7 @@ const click = (event) => {
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Red WINS!!!';
                                 showPlayer.style.display = 'none';
+                                liveGame = false;
                             }
                         }    
                     }
@@ -115,6 +119,7 @@ const click = (event) => {
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Red WINS!!!';
                                 showPlayer.style.display = 'none';
+                                liveGame = false;
                             }
                         }     
                     }
@@ -127,6 +132,7 @@ const click = (event) => {
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Red WINS!!!';
                                 showPlayer.style.display = 'none';
+                                liveGame = false;
                             }
                         }     
                     }
@@ -138,6 +144,7 @@ const click = (event) => {
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Yellow WINS!!!';
                                 showPlayer.style.display = 'none';
+                                liveGame = false;
                             }
                         }     
                     }
@@ -148,6 +155,7 @@ const click = (event) => {
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Yellow WINS!!!';
                                 showPlayer.style.display = 'none';
+                                liveGame = false;
                             }
                         }    
                     }
@@ -158,6 +166,7 @@ const click = (event) => {
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Yellow WINS!!!';
                                 showPlayer.style.display = 'none';
+                                liveGame = false;
                             }
                         }  
                     }
@@ -168,6 +177,7 @@ const click = (event) => {
                                 gameGrid[rows][column] = 'w';
                                 winner.innerHTML = 'Yellow WINS!!!';
                                 showPlayer.style.display = 'none';
+                                liveGame = false;
                              }
                         }     
                     }
@@ -195,6 +205,7 @@ const click = (event) => {
 
 
     const changeColor = () => {
+        if(!liveGame) return;
         for(let rows = gameGrid.length - 1; rows >= 0; rows--){
             let columnArr = " ";
             if(gameGrid[rows][column] === " "){
